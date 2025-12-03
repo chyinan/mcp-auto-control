@@ -1,7 +1,7 @@
 <a id="mcp-桌面自动化代理"></a>
 # MCP 桌面自动化代理
 
-[English](#mcp-desktop-automation-agent) | [中文](#mcp-桌面自动化代理)
+[English](#mcp_auto_control) | [中文](#mcp-桌面自动化代理)
 
 一个基于 MCP (Model Context Protocol) 的桌面自动化工具，允许 AI 助手通过 MCP 协议控制您的桌面，执行鼠标点击、键盘输入、截图等操作。
 
@@ -31,14 +31,16 @@ pip install -r requirements.txt
 
 ### 作为 MCP 服务器运行
 
-1. 确保已安装并配置 Claude Desktop 或其他支持 MCP 的客户端
+#### Claude Desktop
 
-2. 在 Claude Desktop 的配置文件中添加此服务器：
+1. 确保已安装并配置 Claude Desktop
+
+2. 在 Claude Desktop 的配置文件中添加此服务器（配置文件位置：`%APPDATA%\Claude\claude_desktop_config.json`）：
 
 ```json
 {
   "mcpServers": {
-    "desktop-agent": {
+    "mcp_auto_control": {
       "command": "python",
       "args": ["D:/mcp_auto_control/desktop_agent.py"]
     }
@@ -47,6 +49,27 @@ pip install -r requirements.txt
 ```
 
 3. 重启 Claude Desktop，即可在对话中使用桌面自动化功能
+
+#### Cursor
+
+1. 打开 Cursor 设置
+
+2. 搜索 "MCP" 或找到 MCP 服务器配置选项
+
+3. 在 Cursor 的 MCP 配置中添加此服务器：
+
+```json
+{
+  "mcpServers": {
+    "mcp_auto_control": {
+      "command": "python",
+      "args": ["D:/mcp_auto_control/desktop_agent.py"]
+    }
+  }
+}
+```
+
+4. 重启 Cursor，即可在 AI 对话中使用桌面自动化功能
 
 ### 直接运行
 
@@ -125,10 +148,10 @@ mcp_auto_control/
 
 ---
 
-<a id="mcp-desktop-automation-agent"></a>
+<a id="mcp_auto_control"></a>
 # MCP Desktop Automation Agent
 
-[English](#mcp-desktop-automation-agent) | [中文](#mcp-桌面自动化代理)
+[English](#mcp_auto_control) | [中文](#mcp-桌面自动化代理)
 
 A desktop automation tool based on MCP (Model Context Protocol) that allows AI assistants to control your desktop through the MCP protocol, performing mouse clicks, keyboard input, screenshots, and other operations.
 
@@ -158,9 +181,11 @@ pip install -r requirements.txt
 
 ### Running as an MCP Server
 
-1. Make sure Claude Desktop or other MCP-compatible clients are installed and configured
+#### Claude Desktop
 
-2. Add this server to Claude Desktop's configuration file:
+1. Make sure Claude Desktop is installed and configured
+
+2. Add this server to Claude Desktop's configuration file (located at `%APPDATA%\Claude\claude_desktop_config.json`):
 
 ```json
 {
@@ -174,6 +199,27 @@ pip install -r requirements.txt
 ```
 
 3. Restart Claude Desktop to use desktop automation features in conversations
+
+#### Cursor
+
+1. Open Cursor settings
+
+2. Search for "MCP" or find the MCP server configuration option
+
+3. Add this server to Cursor's MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "mcp_auto_control": {
+      "command": "python",
+      "args": ["D:/mcp_auto_control/desktop_agent.py"]
+    }
+  }
+}
+```
+
+4. Restart Cursor to use desktop automation features in AI conversations
 
 ### Direct Run
 
