@@ -1,4 +1,7 @@
+<a id="mcp-桌面自动化代理"></a>
 # MCP 桌面自动化代理
+
+[English](#mcp-desktop-automation-agent) | [中文](#mcp-桌面自动化代理)
 
 一个基于 MCP (Model Context Protocol) 的桌面自动化工具，允许 AI 助手通过 MCP 协议控制您的桌面，执行鼠标点击、键盘输入、截图等操作。
 
@@ -135,4 +138,144 @@ mcp_auto_control/
 - 截图功能中的字体路径已针对 Windows 系统配置
 - 如需在其他操作系统上使用，可能需要调整字体路径配置
 
-"# mcp-auto-control" 
+---
+
+<a id="mcp-desktop-automation-agent"></a>
+# MCP Desktop Automation Agent
+
+[English](#mcp-desktop-automation-agent) | [中文](#mcp-桌面自动化代理)
+
+A desktop automation tool based on MCP (Model Context Protocol) that allows AI assistants to control your desktop through the MCP protocol, performing mouse clicks, keyboard input, screenshots, and other operations.
+
+## Features
+
+- 🖱️ **Mouse Control**: Move mouse, click, double-click
+- ⌨️ **Keyboard Input**: Text input, key presses, hotkey support
+- 📸 **Screenshot**: Capture screen with mouse position annotation and coordinate grid support
+- 📏 **Screen Info**: Get screen resolution and mouse position
+- 🖱️ **Scroll Operations**: Support screen scrolling
+
+## System Requirements
+
+- Python 3.8+
+- Windows operating system (current version is optimized for Windows)
+
+## Installation
+
+1. Clone or download this project
+
+2. Create a virtual environment (recommended):
+```bash
+python -m venv venv
+```
+
+3. Activate the virtual environment:
+   - Windows (CMD):
+     ```bash
+     venv\Scripts\activate
+     ```
+   - Windows (PowerShell):
+     ```powershell
+     venv\Scripts\Activate.ps1
+     ```
+
+4. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+### Running as an MCP Server
+
+1. Make sure Claude Desktop or other MCP-compatible clients are installed and configured
+
+2. Add this server to Claude Desktop's configuration file:
+
+```json
+{
+  "mcpServers": {
+    "desktop-agent": {
+      "command": "python",
+      "args": ["D:/mcp_auto_control/desktop_agent.py"]
+    }
+  }
+}
+```
+
+3. Restart Claude Desktop to use desktop automation features in conversations
+
+### Direct Run
+
+```bash
+python desktop_agent.py
+```
+
+## Available Tools
+
+### `get_screen_info()`
+Get the current screen resolution and mouse position information.
+
+### `take_screenshot(show_grid: bool = False)`
+Capture the current screen and annotate the mouse pointer position on the screenshot.
+- `show_grid`: If `True`, draw a coordinate grid on the screenshot (one line per 100 pixels)
+
+### `move_mouse(x: int, y: int)`
+Move the mouse to the specified (x, y) coordinates.
+
+### `click(x: int = None, y: int = None, double_click: bool = False, verify: bool = False)`
+Click the left mouse button at the specified coordinates.
+- `x`, `y`: Click coordinates (if not provided, click at current position)
+- `double_click`: Whether to double-click
+- `verify`: If `True`, returns the current mouse position after clicking for verification
+
+### `type_text(text: str, enter: bool = True)`
+Type text at the current focus position.
+- `text`: Text to input
+- `enter`: Whether to press Enter after input
+
+### `scroll(amount: int)`
+Scroll the screen. Positive numbers scroll up, negative numbers scroll down.
+
+### `press_key(key: str)`
+Press the specified keyboard key.
+- Common keys: `'win'`, `'enter'`, `'esc'`, `'tab'`, `'space'`, `'ctrl'`, `'alt'`, `'shift'`, etc.
+- Hotkey examples: `'ctrl+c'`, `'alt+tab'`, `'win+r'`, etc.
+
+## Security Warning
+
+⚠️ **Important**: This tool has full control over your desktop. Use with caution!
+
+- `pyautogui.FAILSAFE = True` is enabled: Moving the mouse to the screen corner will forcefully stop the script
+- It is recommended to verify functionality in a test environment first
+- Do not use on production systems or systems containing sensitive information
+
+## Project Structure
+
+```
+mcp_auto_control/
+├── desktop_agent.py    # Main program file
+├── requirements.txt    # Project dependencies
+├── README.md          # Project documentation
+└── .gitignore         # Git ignore file configuration
+```
+
+## Dependencies
+
+- `mcp`: MCP protocol support
+- `pyautogui`: Desktop automation
+- `pillow`: Image processing
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contributing
+
+Issues and Pull Requests are welcome!
+
+## Notes
+
+- Current version is primarily optimized for Windows systems
+- Font paths in screenshot functionality are configured for Windows systems
+- If using on other operating systems, font path configuration may need adjustment
