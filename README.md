@@ -22,22 +22,7 @@
 
 1. 克隆或下载此项目
 
-2. 创建虚拟环境（推荐）：
-```bash
-python -m venv venv
-```
-
-3. 激活虚拟环境：
-   - Windows (CMD):
-     ```bash
-     venv\Scripts\activate
-     ```
-   - Windows (PowerShell):
-     ```powershell
-     venv\Scripts\Activate.ps1
-     ```
-
-4. 安装依赖：
+2. 安装依赖：
 ```bash
 pip install -r requirements.txt
 ```
@@ -164,22 +149,7 @@ A desktop automation tool based on MCP (Model Context Protocol) that allows AI a
 
 1. Clone or download this project
 
-2. Create a virtual environment (recommended):
-```bash
-python -m venv venv
-```
-
-3. Activate the virtual environment:
-   - Windows (CMD):
-     ```bash
-     venv\Scripts\activate
-     ```
-   - Windows (PowerShell):
-     ```powershell
-     venv\Scripts\Activate.ps1
-     ```
-
-4. Install dependencies:
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
